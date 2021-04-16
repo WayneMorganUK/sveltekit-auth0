@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 	import { tasks } from '$lib/store';
-	export let task = {};
+	export let task = {} as Task;
 
-	let isChecked;
+	let isChecked: boolean;
 
 	function taskDone() {
 		let updatedTasks = $tasks.map((currentTask) => {

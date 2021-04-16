@@ -1,20 +1,15 @@
-# create-svelte
+# Authenticating Sveltekit Applications
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+Based on the svelte application detailed on this [blog](https://auth0.com/blog/authenticating-svelte-apps/) to authentic a Svelte application with Auth0
 
-## Creating a project
+# Environment Variables
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm init svelte@next
-
-# create a new project in my-app
-npm init svelte@next my-app
+Create a `.env` file in your root directory and enter your credentials as shown below:
+```
+VITE_AUTH0_DOMAIN =xxx-xxxxxxxxx.xx.auth0.com
+VITE_APP_CLIENT_ID =xxxxxxxxxxxxxxxxxxxxxxx
 ```
 
-> Note: the `@next` is temporary
 
 ## Developing
 

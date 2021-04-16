@@ -2,7 +2,7 @@ import createAuth0Client, { Auth0Client, PopupLoginOptions } from "@auth0/auth0-
 import { user, isAuthenticated, popupOpen } from "$lib/store";
 import config from "../../auth_config"
 
-async function createClient():Promise<Auth0Client> {
+async function createClient(): Promise<Auth0Client> {
   const auth0Client = await createAuth0Client({
     domain: config.domain,
     client_id: config.client_id
@@ -11,7 +11,7 @@ async function createClient():Promise<Auth0Client> {
   return auth0Client;
 }
 
-async function loginWithPopup(client_id:Auth0Client, options?:PopupLoginOptions):Promise<void> {
+async function loginWithPopup(client_id: Auth0Client, options?: PopupLoginOptions): Promise<void> {
   popupOpen.set(true);
   try {
     await client_id.loginWithPopup(options);
@@ -26,7 +26,7 @@ async function loginWithPopup(client_id:Auth0Client, options?:PopupLoginOptions)
   }
 }
 
-function logout(client_id:Auth0Client):void{
+function logout(client_id: Auth0Client): void {
   return client_id.logout();
 }
 
