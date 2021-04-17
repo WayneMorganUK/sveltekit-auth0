@@ -23,10 +23,11 @@
 	}
 </script>
 
-<nav class="relative flex items-center px-4 py-2 flex-row flex-nowrap justify-start bg-gray-700">
+<nav class=" relative flex flex-wrap items-center px-4 py-2 md:flex-row md:flex-nowrap justify-between md:justify-start bg-gray-700">
 	<a class="inline-block py-1 mr-4 text-xl whitespace-nowrap text-white" href="/">Task Manager</a>
 	<button
-		class="text-white text-opacity-50 border-white border-opacity-10 hidden cursor-pointer px-1 py-3 text-xl bg-transparent border-transparent border-solid border-2 leading-4"
+		on:click={logout}
+		class="text-white text-opacity-50 border-white border-opacity-10 md:hidden cursor-pointer px-1 py-3 text-xl bg-transparent border-transparent border-solid border-2 leading-4"
 		type="button"
 		data-toggle="collapse"
 		data-target="#navbarText"
@@ -36,8 +37,8 @@
 	>
 		<span class="img inline-block w-6 h-6 align-middle" />
 	</button>
-	<div class="flex-grow flex items-center flex-auto" id="navbarText">
-		<div class="flex flex-row pl-0 mb-0 list-none mr-auto">
+	<div class="flex-grow hidden md:flex items-center flex-auto" id="navbarText">
+		<div class="flex flex-col md:flex-row pl-0 mb-0 list-none mr-auto">
 			{#if $isAuthenticated}
 				<span class="text-white">&nbsp;&nbsp;{$user.name} ({$user.email})</span>
 			{:else}<span>&nbsp;</span>{/if}

@@ -7,6 +7,7 @@
 	}
 
 	let newTask: string;
+	let inputFocus: HTMLInputElement;
 
 	function addItem() {
 		let newTaskObject = {
@@ -21,6 +22,7 @@
 		tasks.set(updatedTasks);
 
 		newTask = '';
+		inputFocus.focus();
 	}
 
 	function genRandom(length = 7) {
@@ -30,13 +32,16 @@
 			result += chars[Math.round(Math.random() * (chars.length - 1))];
 		return result;
 	}
+	const onKeyPress = (event: { charCode: number }) => {
+		if (event.charCode === 13) addItem();
+	};
 </script>
 
 {#if !$isAuthenticated}
-	<div class=" w-full max-w-6xl mt-12 px-4 mx-auto">
+	<div class=" w-full max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mt-12 px-4 mx-auto">
 		<div class="flex flex-wrap -mx-4">
 			<div class="row relative w-full px-4">
-				<div class=" px-8 py-16 mb-8 bg-gray-200 rounded">
+				<div class="sm:px-8 sm:py-16 px-4 py-8 mb-8 bg-gray-200 rounded">
 					<h1 class=" text-6xl font-light mb-2 leading-5! mt-0">Task Management made Easy!</h1>
 					<p class="text-xl font-light mt-0 mb-4">Instructions</p>
 					<ul class="pl-10 mt-0 mb-4">
@@ -55,7 +60,7 @@
 		</div>
 	</div>
 {:else}
-	<div class=" mt-12 max-w-6xl w-full px-4 mx-auto " id="main-application">
+	<div class="  w-full max-w-xl md:max-w-2xl lg:max-w-4xl xl:max-w-6xl mt-12 px-4 mx-auto">
 		<div class="flex flex-wrap -mx-4">
 			<div class="col relative w-full px-4">
 				<ul class="flex flex-col pl-0 mb-0 rounded mt-0">
@@ -66,7 +71,9 @@
 			</div>
 			<div class="col relative w-full px-4 ">
 				<input
-					class="form-control focus:shadow-md focus:border-blue-500 focus:text-gray-800 focus:outline-none text-gray-700 block w-full h-9 px-3 py-2 leading-6 bg-white bg-clip-padding border-solid border-2 border-gray-400 rounded"
+					bind:this={inputFocus}
+					on:keypress={onKeyPress}
+					class="form-control focus:border-4 focus:border-blue-500 focus:text-gray-800 focus:outline-none text-gray-700 block w-full h-9 px-3 py-2 leading-6 bg-white bg-clip-padding border-solid border-4 border-gray-400 rounded"
 					bind:value={newTask}
 					placeholder="Enter New Task"
 				/>
@@ -84,15 +91,19 @@
 {/if}
 
 <style>
-	.row {
-		margin-left: 8.33333%;
-		flex: 0 0 83.33333%;
-		max-width: 83.33333%;
+	@media only screen and (min-width: 768px) {
+		.row {
+			margin-left: 8.33333%;
+			flex: 0 0 83.33333%;
+			max-width: 83.33333%;
+		}
+
+		.col {
+			flex: 0 0 50%;
+			max-width: 50%;
+		}
 	}
-	.col {
-		flex: 0 0 50%;
-		max-width: 50%;
-	}
+
 	.form-control {
 		transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	}

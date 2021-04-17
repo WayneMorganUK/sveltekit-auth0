@@ -9,7 +9,7 @@ Create a `.env` file in your root directory and enter your credentials as shown 
 VITE_AUTH0_DOMAIN =xxx-xxxxxxxxx.xx.auth0.com
 VITE_APP_CLIENT_ID =xxxxxxxxxxxxxxxxxxxxxxx
 ```
-remember to add .env to your `.gitignorefile`
+Add .env to your `.gitignorefile`
 
 
 ## Developing

@@ -1,11 +1,10 @@
 import createAuth0Client, { Auth0Client, PopupLoginOptions } from "@auth0/auth0-spa-js";
 import { user, isAuthenticated, popupOpen } from "$lib/store";
-import config from "../../auth_config"
 
 async function createClient(): Promise<Auth0Client> {
   const auth0Client = await createAuth0Client({
-    domain: config.domain,
-    client_id: config.client_id
+    domain: import.meta.env.VITE_AUTH0_DOMAIN as string,
+    client_id: import.meta.env.VITE_APP_CLIENT_ID as string
   });
 
   return auth0Client;
