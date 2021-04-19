@@ -1,26 +1,23 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import auth from '$lib/authService';
-	import { isAuthenticated, user, loging } from '$lib/store';
-	import type { Auth0Client } from '@auth0/auth0-spa-js';
-
-	let auth0Client: Auth0Client;
-
+	import { isAuthenticated, user, auth0Client } from '$lib/store';
+	
 	onMount(async () => {
-		auth0Client = await auth.createClient();
-		isAuthenticated.set(await auth0Client.isAuthenticated());
-		user.set(await auth0Client.getUser());
+		$auth0Client = await auth.createClient();
+		isAuthenticated.set(await $auth0Client.isAuthenticated());
+		user.set(await $auth0Client.getUser());
 	});
-
+	
 	function login() {
-		auth.loginWithPopup(auth0Client);
+		auth.loginWithPop($auth0Client);
 	}
 	function logout() {
-		auth.logout(auth0Client);
+		auth.logout($auth0Client);
 	}
-	$: if ($loging) {
-		login();
-	}
+	// $: if ($loging) {
+	// 	login();
+	// }
 </script>
 
 <nav class=" relative flex flex-wrap items-center px-4 py-2 md:flex-row md:flex-nowrap justify-between md:justify-start bg-gray-700">

@@ -6,32 +6,30 @@ async function createClient(): Promise<Auth0Client> {
     domain: import.meta.env.VITE_AUTH0_DOMAIN as string,
     client_id: import.meta.env.VITE_APP_CLIENT_ID as string
   });
-
   return auth0Client;
 }
 
-async function loginWithPopup(client_id: Auth0Client, options?: PopupLoginOptions): Promise<void> {
+async function loginWithPop(clientId:Auth0Client, options?: PopupLoginOptions): Promise<void> {
   popupOpen.set(true);
   try {
-    await client_id.loginWithPopup(options);
+    await clientId.loginWithPopup(options);
 
-    user.set(await client_id.getUser());
+    user.set(await clientId.getUser());
     isAuthenticated.set(true);
   } catch (e) {
-    // eslint-disable-next-line
     console.error(e);
   } finally {
     popupOpen.set(false);
   }
 }
 
-function logout(client_id: Auth0Client): void {
-  return client_id.logout();
+function logout(clientId: Auth0Client): void {
+  return clientId.logout();
 }
 
 const auth = {
   createClient,
-  loginWithPopup,
+  loginWithPop,
   logout
 };
 

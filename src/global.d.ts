@@ -8,3 +8,12 @@ type Task = {
   completed: boolean;
   description: string;
 }
+
+type User =  {
+  name: '',
+  email: ''
+}
+
+
+
+

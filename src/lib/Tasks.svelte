@@ -1,28 +1,31 @@
 <script lang="ts">
-	import { isAuthenticated, user, user_tasks, tasks, loging } from '$lib/store';
+	import { isAuthenticated, user, user_tasks, tasks, auth0Client } from '$lib/store';
 	import TaskItem from '$lib/TaskItem.svelte';
-
+	import auth from '$lib/authService';
+	
 	function login() {
-		$loging = !$loging;
+		auth.loginWithPop($auth0Client);
 	}
 
 	let newTask: string;
 	let inputFocus: HTMLInputElement;
 
 	function addItem() {
-		let newTaskObject = {
-			id: genRandom(),
-			description: newTask,
-			completed: false,
-			user: $user.email as string
-		};
+		if (newTask.length||newTask!==undefined){
+			let newTaskObject = {
+				id: genRandom(),
+				description: newTask,
+				completed: false,
+				user: $user.email as string
+				
+			}
+			let updatedTasks = [...$tasks, newTaskObject];
 
-		let updatedTasks = [...$tasks, newTaskObject];
+			tasks.set(updatedTasks);
 
-		tasks.set(updatedTasks);
-
-		newTask = '';
-		inputFocus.focus();
+			newTask = '';
+			inputFocus.focus();
+		}
 	}
 
 	function genRandom(length = 7) {
