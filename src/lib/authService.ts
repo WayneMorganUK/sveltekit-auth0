@@ -1,4 +1,5 @@
-import createAuth0Client, { Auth0Client, PopupLoginOptions } from "@auth0/auth0-spa-js";
+import createAuth0Client from "@auth0/auth0-spa-js";
+import type { Auth0Client, PopupLoginOptions } from "@auth0/auth0-spa-js";
 import { user, isAuthenticated, popupOpen } from "$lib/store";
 
 async function createClient(): Promise<Auth0Client> {
@@ -9,7 +10,7 @@ async function createClient(): Promise<Auth0Client> {
   return auth0Client;
 }
 
-async function loginWithPop(clientId:Auth0Client, options?: PopupLoginOptions): Promise<void> {
+async function loginWithPop(clientId: Auth0Client, options?: PopupLoginOptions): Promise<void> {
   popupOpen.set(true);
   try {
     await clientId.loginWithPopup(options);

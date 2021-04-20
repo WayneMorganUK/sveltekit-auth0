@@ -1,4 +1,4 @@
-import {  writable, derived } from "svelte/store";
+import { writable, derived } from "svelte/store";
 
 import type { Auth0Client } from '@auth0/auth0-spa-js';
 

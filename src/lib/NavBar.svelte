@@ -2,13 +2,13 @@
 	import { onMount } from 'svelte';
 	import auth from '$lib/authService';
 	import { isAuthenticated, user, auth0Client } from '$lib/store';
-	
+
 	onMount(async () => {
 		$auth0Client = await auth.createClient();
 		isAuthenticated.set(await $auth0Client.isAuthenticated());
 		user.set(await $auth0Client.getUser());
 	});
-	
+
 	function login() {
 		auth.loginWithPop($auth0Client);
 	}
@@ -20,7 +20,9 @@
 	// }
 </script>
 
-<nav class=" relative flex flex-wrap items-center px-4 py-2 md:flex-row md:flex-nowrap justify-between md:justify-start bg-gray-700">
+<nav
+	class=" relative flex flex-wrap items-center px-4 py-2 md:flex-row md:flex-nowrap justify-between md:justify-start bg-gray-700"
+>
 	<a class="inline-block py-1 mr-4 text-xl whitespace-nowrap text-white" href="/">Task Manager</a>
 	<button
 		on:click={logout}

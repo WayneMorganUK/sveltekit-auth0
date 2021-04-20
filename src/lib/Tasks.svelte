@@ -2,7 +2,7 @@
 	import { isAuthenticated, user, user_tasks, tasks, auth0Client } from '$lib/store';
 	import TaskItem from '$lib/TaskItem.svelte';
 	import auth from '$lib/authService';
-	
+
 	function login() {
 		auth.loginWithPop($auth0Client);
 	}
@@ -11,14 +11,13 @@
 	let inputFocus: HTMLInputElement;
 
 	function addItem() {
-		if (newTask.length||newTask!==undefined){
+		if (newTask.length || newTask !== undefined) {
 			let newTaskObject = {
 				id: genRandom(),
 				description: newTask,
 				completed: false,
 				user: $user.email as string
-				
-			}
+			};
 			let updatedTasks = [...$tasks, newTaskObject];
 
 			tasks.set(updatedTasks);

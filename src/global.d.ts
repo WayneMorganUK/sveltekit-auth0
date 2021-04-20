@@ -9,11 +9,7 @@ type Task = {
   description: string;
 }
 
-type User =  {
-  name: '',
-  email: ''
+type User = {
+  name: string,
+  email: string
 }
-
-
-
-
