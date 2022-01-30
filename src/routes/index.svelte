@@ -3,7 +3,7 @@
 	import NavBar from '$lib/NavBar.svelte';
 </script>
 
-<main class='block'>
+<main class="block">
 	<NavBar />
 	<Tasks />
 </main>
